@@ -20,4 +20,4 @@
       service: name=ntp state=restarted
   roles:
     - { role: geerlingguy.repo-epel, when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' }
-    - { role: geerlingguy.elasticsearch-curator }
+    - { role: curator } 
