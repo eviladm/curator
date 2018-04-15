@@ -1,0 +1,14 @@
+---
+elasticsearch_curator_cron_jobs:
+  - {
+    name: "Delete old elasticsearch indices.",
+    job: "/usr/bin/curator --config /root/curator.yml /root/actionfile.yml",
+    minute: 0,
+    hour: 1
+  }
+  - {
+    name: "Close old elasticsearch indices.",
+    job: "/usr/bin/curator --config /root/curator.yml /root/actionfile.yml",
+    minute: 30,
+    hour: 1
+  }
