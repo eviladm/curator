@@ -1,4 +1,7 @@
 ---
+- name: include vars
+  include_vars: "curator.yaml"
+
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
@@ -21,3 +24,8 @@
     weekday: "{{ item.weekday | default('*') }}"
     month: "{{ item.month | default('*') }}"
   with_items: "{{ elasticsearch_curator_cron_jobs }}"
+
+- name: Create config
+  template:
+    src: curator.yml.j2
+    dest: /root/curator.yml
