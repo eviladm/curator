@@ -1,5 +1,6 @@
 ---
-dependencies: []
+dependencies:
+  - config_encoder_filters
 
 galaxy_info:
   author: geerlingguy

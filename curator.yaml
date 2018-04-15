@@ -13,6 +13,10 @@
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
       notify:
       - restart ntpd
+    - name: Create config file
+      template:
+        src: curator.yml.j2
+        dest: /home/curator/curator.yml
   handlers:
     - name: RHEL | restart ntpd
       service: name=ntpd state=restarted
