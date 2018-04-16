@@ -7,12 +7,12 @@
       apt: pkg=ntp state=latest
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
       notify:
-      - restart ntpd
+      - Debian | restart ntpd
     - name: RHEL | ensure ntpd is at the latest version
       yum: pkg=ntp state=latest
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
       notify:
-      - restart ntpd
+      - RHEL | restart ntpd
   handlers:
     - name: RHEL | restart ntpd
       service: name=ntpd state=restarted

@@ -1,12 +1,10 @@
 # Ansible Role: Elasticsearch Curator
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-elasticsearch-curator.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-elasticsearch-curator)
-
 An Ansible Role that installs [Elasticsearch Curator](https://github.com/elasticsearch/curator) on RedHat/CentOS or Debian/Ubuntu.
+The role incorporates Config Encoder Filter by [Jiri Tyr] (https://github.com/jtyr/ansible-config_encoder_filters)
+This role is based on [Jeff Geerling](https://www.jeffgeerling.com/), geerlingguy.elasticsearch-curator role, and works with new versions
 
 ## Requirements
-
-None, but it's a lot more helpful if you have Elasticsearch running somewhere :)
 
 On RedHat/CentOS, make sure you have the EPEL repository configured, so the `python-pip` package can be installed. You can install the EPEL repo by simply adding `geerlingguy.repo-epel` to your playbook's roles.
 
@@ -28,7 +26,18 @@ Available variables are listed below, along with default values (see `defaults/m
         hour: "1"
       }
 
-A list of cron jobs to use curator to prune, optimize, close, and otherwise maintain your Elasticsearch indexes. If you're connecting to an Elasticsearch server on a different host/port than `localhost` and `9200`, you need to add `--host [hostname]` and/or `--port [port]` to the jobs. More documentation is available on the [Elasticsearch Curator wiki](https://github.com/elasticsearch/curator/wiki/Examples). You can add any of `minute`, `hour`, `day`, `weekday`, and `month` to the cron jobs—values that are not explicitly set will default to `*`.
+curator.yml and actionfile.yml config can be changed using /vars/vars.yml using yaml encoder for CEF
+
+
+	actionfile_config:
+	  section1:
+	    option11: value11
+	    option12: value12
+	curator_config:
+	  section1:
+	    option11: value11
+	    option12: value12
+
 
 ## Dependencies
 
@@ -38,7 +47,7 @@ A list of cron jobs to use curator to prune, optimize, close, and otherwise main
 
     - hosts: search
       roles:
-        - { role: geerlingguy.elasticsearch-curator }
+        - { role: curator }
 
 ## License
 
@@ -46,4 +55,5 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This role was created in 2018 by [Sascha Kain](www.google.com)
+
