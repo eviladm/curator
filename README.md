@@ -15,13 +15,13 @@ Available variables are listed below, along with default values (see `defaults/m
     elasticsearch_curator_cron_jobs:
       - {
         name: "Delete old elasticsearch indices.",
-        job: "/usr/local/bin/curator delete --older-than 30",
+        job: "/usr/bin/curator --config /root/curator.yml /root/actionfile.yml",
         minute: "0",
         hour: "1"
       }
       - {
         name: "Close old elasticsearch indices.",
-        job: "/usr/local/bin/curator close --older-than 14",
+        job: "/usr/bin/curator --config /root/curator.yml /root/actionfile.yml",
         minute: "30",
         hour: "1"
       }
